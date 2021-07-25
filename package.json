@@ -1,0 +1,53 @@
+{
+  "name": "flow-assessment-bitcoin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/date-fns": "^1.3.7",
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/lab": "^5.0.0-alpha.30",
+    "@material-ui/pickers": "^3.3.10",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
+    "connected-react-router": "^6.8.0",
+    "date-fns": "^2.16.1",
+    "humps": "^2.0.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "node-sass": "^4.14.1",
+    "normalizr": "^3.6.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-axios": "^2.0.5",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

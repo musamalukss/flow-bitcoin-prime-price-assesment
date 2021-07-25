@@ -1,0 +1,126 @@
+// declared colors
+$app-color: #646464;
+$app-color-dark: #327596;
+$white-color: #ffffff;
+$black-color : black;
+
+
+.container {
+  //text-align: center;
+  background-color: $app-color;
+  min-height: 100vh;
+}
+
+.logo {
+ // animation: App-logo-spin infinite 30s;
+  pointer-events: none;
+  width: 150px;
+  height: 150px;
+}
+.Bitcoin-results-card{
+    padding: 70px;
+}
+
+.rowDatePicker {
+  width: 900px !important;
+  text-align: center !important;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: $white-color;
+  padding: 15px;;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: $white-color;
+  padding: 15px;;
+}
+
+
+.p{
+  font-size:  8pt !important;
+  font-weight: bold;
+}
+
+
+
+.Dates-container {
+  padding: 5px !important;
+  width: 100%;
+}
+
+.Bitcoin-heading {
+  margin: 15px;
+  font-weight: 800 !important;
+}
+
+.Bitcoin-values-item-headers {
+  font-weight: 600 !important;
+}
+
+.Btn-filter {
+  margin-bottom: 20px !important;
+  background-color: $black-color!important;
+  color: $white-color !important;
+  width: 200px;
+}
+.table .thead-dark th {
+  color: $white-color;
+  background-color:$app-color;
+  border-color: $app-color-dark;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.MuiFormControl-root {
+  margin-bottom: 15px !important;
+  width: 50% !important;
+}
+@media (max-width: 767px) {
+  .Bitcoin-heading {
+    font-size: 20px !important;
+  }
+  .logo {
+    width: 75px !important;
+    height: 75px !important;
+  }
+  .Btn-filter {
+    width: 100% !important;
+  }
+}
+/* override date labels and inputs*/
+.Mui-focused{
+  color: $black-color !important;
+}
+.MuiInput-underline:after {
+  border-bottom: 2px solid $black-color  !important;
+ 
+
+}
+.MuiPickersToolbar-toolbar{
+  background-color: $black-color  !important;
+
+}
+.MuiPickersDay-daySelected {
+  background-color: $black-color  !important;
+  
+}
+.MuiButton-textPrimary {
+  color: $black-color !important
+}
