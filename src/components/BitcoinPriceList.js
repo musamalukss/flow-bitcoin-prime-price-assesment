@@ -33,6 +33,9 @@ const BitcoinPriceList = ({bitcoinList}) => {
 
     useEffect(() => {      
         setBitcoinList(bitcoinList);
+           return () => {
+            setPage(0);
+        }
        
     }, [JSON.stringify(bitcoinList)])
 
