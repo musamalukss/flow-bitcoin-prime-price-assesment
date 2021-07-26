@@ -12,7 +12,7 @@ const Header = ({ title }) => {
 }
 
 Header.defaultProps = {
-    title: "Bitcoin Daily Price"
+    title: "Bitcoin  Price"
 }
 
 export default Header
