@@ -67,7 +67,7 @@ const BitcoinPriceList = ({bitcoinList}) => {
                 </TableBody>
             </Table>
             <TablePagination
-            rowsPerPageOptions = {[10,20]}
+            rowsPerPageOptions = {[10]}
             component = "div"
             count = {bitcoinList.length}
             rowsPerPage= {rowsPerPage}
