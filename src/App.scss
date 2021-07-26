@@ -12,10 +12,10 @@ $black-color : black;
 }
 
 .logo {
- // animation: App-logo-spin infinite 30s;
+  animation: App-logo-spin alternate 30s;
   pointer-events: none;
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
 }
 .Bitcoin-results-card{
     padding: 70px;
