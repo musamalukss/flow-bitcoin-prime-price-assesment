@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback ,FC } from 'react'
 import Button from '@material-ui/core/Button';
-import DatePicker from '../components/DatePicker';
+import DatePicker from './DatePicker';
 import { Card } from '@material-ui/core';
 import Header from './Header';
 import moment from 'moment';
@@ -9,23 +9,19 @@ import { fetchBitcoinPrice } from '../api/BitcoinApi';
 
 
 
-const Home = () => {
+const Home : FC = () => {
 
     const dateFormt = 'YYYY-MM-DD';
-    const [monthPeriod, setMonthPeriod] = useState(6)
+    const [monthPeriod] = useState(6)
     const [startDate, setStartDate] = useState(moment().add(-monthPeriod, 'M').format(dateFormt));
     const [endDate, setEndDate] = useState(moment().format(dateFormt));
-    const [bitcoinPriceData, setBitcoinPriceData] = useState([])
-
-   
-    useEffect(() => {
-        //effect
-        getDailyBitcoinPrice();
-        
-    }, [JSON.stringify(bitcoinPriceData)])
+    const [bitcoinPriceData, setBitcoinPriceData] = useState([{date: "", value: 0, isPrime: false}])
 
 
-    const getDailyBitcoinPrice = useCallback(() => {
+    const getDailyBitcoinPrice = () => {
+
+
+
         fetchBitcoinPrice(startDate, endDate).then(res => {
            
             const bitCoinValues = res.data.bpi;
@@ -43,9 +39,23 @@ const Home = () => {
                 setBitcoinPriceData(BitcoinPrice)
             }
         })
-    })
+    }
+    const loadDefaults = () => {
+        getDailyBitcoinPrice()
+    }
+   
+    useEffect(() => {
+        loadDefaults()
 
-    const isPrimeNumber = (value) => {
+        return () => {
+
+        }
+        
+    }, [])
+
+ 
+
+    const isPrimeNumber = (value : number) => {
         let isPrime = true;
         for (let i = 2; i <= Math.sqrt(value); i++) {
             if (Math.floor(value) % i === 0) {
@@ -55,7 +65,11 @@ const Home = () => {
         }
         return isPrime && (value > 1);
     }
+
+
     const onDateChanged = useCallback((value, type) => {
+
+     
 
      
         if (type === 'Start')
@@ -65,8 +79,15 @@ const Home = () => {
 
     }, [])
 
-    function getBitcoinList(event) {
+    function getBitcoinList(event : React.MouseEvent<HTMLButtonElement>) {
+
+
+        if(startDate <= endDate)
         getDailyBitcoinPrice();
+        else
+
+            
+         console.log("Pop Up for error handling");
     }
 
     return (

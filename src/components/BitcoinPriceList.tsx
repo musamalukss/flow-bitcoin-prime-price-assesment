@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect,FC } from 'react';
+import { withStyles, makeStyles,Theme ,createStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,23 +10,67 @@ import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 import TablePagination from '@material-ui/core/TablePagination'
 
+interface Props {
+    bitcoinList : {
+        date: string,
+        value:number,
+        isPrime:boolean
+
+    }[]
+}
+
+const StyledTableCell = withStyles((theme: Theme) =>
+  createStyles({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 14,
+    },
+  }),
+)(TableCell);
+
+const StyledTableRow = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    },
+  }),
+)(TableRow);
+
+const useStyles = makeStyles({
+    table: {
+      minWidth: 700,
+    },
+  });
+  
+  const formatCurrenyType = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+});
+
+
 // 
 // Displays daily Bitcoin Price, With
 // 
-const BitcoinPriceList = ({bitcoinList}) => {
+
+
+
+const BitcoinPriceList  : FC<Props> = ({bitcoinList}) => {
 
     const classes = useStyles();
     const [page,setPage] = useState(0);
     const [rowsPerPage,setRowsPerPage] = useState(10);
-    const [bitcoinLists, setBitcoinList] = useState({})
+    const [bitcoinLists, setBitcoinList] = useState([{date:"", value: 0, isPrime: false}])
     
-
-
-    const handleChangePage = (event,newPage) => {
-        setPage(newPage);
+    const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+      setPage(newPage);
     };
-
-    const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value,10));
         setPage(0);
     }
@@ -53,7 +97,7 @@ const BitcoinPriceList = ({bitcoinList}) => {
                 <TableBody>
 
 
-                    {bitcoinList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage )
+                    {bitcoinLists.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage )
                     .map((item, index) => {
                         return <StyledTableRow key={`item-${index}`}>
 
@@ -67,13 +111,12 @@ const BitcoinPriceList = ({bitcoinList}) => {
                 </TableBody>
             </Table>
             <TablePagination
-            rowsPerPageOptions = {[10]}
             component = "div"
             count = {bitcoinList.length}
             rowsPerPage= {rowsPerPage}
             page={page}
-            onChangePage={handleChangePage}
-            onChangeRowPerPage= {handleChangeRowsPerPage}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange= {handleChangeRowsPerPage}
             />
 
 
@@ -81,42 +124,5 @@ const BitcoinPriceList = ({bitcoinList}) => {
         </TableContainer>
     );
 }
-
-
-const StyledTableCell = withStyles((theme) => ({
-    head: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
-    },
-    body: {
-        fontSize: 16,
-    },
-}))(TableCell);
-
-const formatCurrenyType = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-});
-
-const StyledTableRow = withStyles((theme) => ({
-    root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
-        },
-    },
-}))(TableRow);
-
-
-
-
-const useStyles = makeStyles({
-    table: {
-        minWidth: 900,
-    },
-});
-
-
-
 
 export default BitcoinPriceList

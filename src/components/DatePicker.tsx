@@ -1,42 +1,52 @@
-import { useEffect } from 'react';
+import { FC } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
 
-function DatePicker(props) {
+interface Props {
+    label:String,
+    startDate? :string,
+    isEndDate? : Boolean,
+    enDate? : String,
+    id : string,
+    value: string |MaterialUiPickersDate |null,
+    onDateChange : (value :Date |MaterialUiPickersDate | null)=> void,
+}
 
-    useEffect(() => {
 
-        minimumDate()
-        maximumDate()
-        
-        return () => {
-           // cleanup
-        }
-    }, [props.startDate,props.enDate])
+
+
+const DatePicker : FC<Props> = ({label,id,isEndDate,onDateChange,startDate,value}) => {
+
+    
 
     function minimumDate() {
         //get startdate from six months ago
         const monthPeriod = 6;
-        return props.isEndDate ? moment(props.startDate) : moment().add(-monthPeriod, 'M');
+        return isEndDate ? moment(startDate) : moment().add(-monthPeriod, 'M');
     }
-
+        
     function maximumDate() {
         //initialise maximum date to the current date using moment
          return moment();
     }
+
+
+
+    
     return (
      
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
-                    id={props.id}
-                    label={props.label}
-                    value={props.value}
+                    id={id}
+                    label={label}
+                    value={value}
                     className="Dates-container"
                     minDate={minimumDate()}
                     maxDate={maximumDate()}
-                    onChange={(value) => props.onDateChange(value)} />
+                    onChange={(value) => onDateChange(value)} />
             </MuiPickersUtilsProvider>
       
     )
