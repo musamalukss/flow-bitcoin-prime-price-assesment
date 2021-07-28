@@ -1,1 +1,0 @@
-import BitcoinPriceList from '../BitcoinPriceList';

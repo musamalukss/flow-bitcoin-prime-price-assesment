@@ -12,7 +12,7 @@ import _ from "lodash";
 
 /**
  * Home component parent component to Header Component, DatePicker Component and the BitcoinPriceList component
- * todo: look at useEffect as it has missing dependancy
+ * todo: finish up testing / Partially tested
  * @returns rendered view of the above mentioned components
  */
 
@@ -47,6 +47,8 @@ const Home: FC = () => {
             }
         };
         fetchData();
+
+        
     }, [endDate, startDate]);
 
   

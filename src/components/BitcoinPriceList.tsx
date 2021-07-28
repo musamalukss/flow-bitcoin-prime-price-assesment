@@ -54,10 +54,11 @@ const formatCurrenyType = new Intl.NumberFormat('en-US', {
 });
 
 
-// 
-// Displays daily Bitcoin Price, With
-// 
-
+/**
+ * BitcoinPriceList Component renders Table with a list of daily bitcoin prices
+ * @param Bitcoinlist as a prop 
+ * @returns 
+ */
 
 
 const BitcoinPriceList: FC<Props> = ({ bitcoinList }) => {
