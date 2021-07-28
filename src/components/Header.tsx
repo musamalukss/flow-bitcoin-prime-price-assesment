@@ -2,6 +2,13 @@ import {FC} from 'react'
 import logo from '../assets/images/bitcoin-logo.png';
 
 
+
+/**
+ * Header component renders the log and heading of the application
+ * 
+ * @returns returns rendered header
+ */
+
 const Header : FC = () => {
     return (
 

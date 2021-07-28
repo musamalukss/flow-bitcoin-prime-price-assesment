@@ -5,50 +5,53 @@ import moment from 'moment';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
 
+
+/**
+ * Props recieved when this componenet is rendered
+ */
+
 interface Props {
-    label:String,
-    startDate? :string,
-    isEndDate? : Boolean,
-    enDate? : String,
-    id : string,
-    value: string |MaterialUiPickersDate |null,
-    onDateChange : (value :Date |MaterialUiPickersDate | null)=> void,
+    label: String,
+    startDate?: string,
+    isEndDate?: Boolean,
+    endDate?: String,
+    id: string,
+    value: string | MaterialUiPickersDate | null,
+    onDateChange: (value: Date | MaterialUiPickersDate | null) => void,
 }
 
 
+/**
+ * Date picker component responsible for the date pickers that allows user to select date range to be used for to get bitcoin price
+ * 
+ * @param label 
+ * @param id
+ * @param isEndDate
+ * @param startDate
+ * @param value 
+ * @param onDateChange
+ * @returns  Datepickers displayed in the Home component
+ */
 
+const DatePicker: FC<Props> = ({ label, id,endDate, onDateChange, startDate, value }) => {
 
-const DatePicker : FC<Props> = ({label,id,isEndDate,onDateChange,startDate,value}) => {
-
-    
-
-    function minimumDate() {
-        //get startdate from six months ago
-        const monthPeriod = 6;
-        return isEndDate ? moment(startDate) : moment().add(-monthPeriod, 'M');
-    }
-        
-    function maximumDate() {
-        //initialise maximum date to the current date using moment
-         return moment();
-    }
-
-
-
-    
+    const monthPeriod = 6;
+    const minimumDate = startDate ? startDate : moment().add(-monthPeriod, "M");
+    const maximumDate = endDate ? endDate : moment();
+  
     return (
-     
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                    id={id}
-                    label={label}
-                    value={value}
-                    className="Dates-container"
-                    minDate={minimumDate()}
-                    maxDate={maximumDate()}
-                    onChange={(value) => onDateChange(value)} />
-            </MuiPickersUtilsProvider>
-      
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+                id={id}
+                label={label}
+                value={value}
+                className="Dates-container"
+                minDate={minimumDate}
+                maxDate={maximumDate}
+                onChange={(value) => onDateChange(value)} />
+        </MuiPickersUtilsProvider>
+
     )
 }
 
